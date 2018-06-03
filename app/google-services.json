@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "14257532661",
+    "firebase_url": "https://technoglobe-6fabf.firebaseio.com",
+    "project_id": "technoglobe-6fabf",
+    "storage_bucket": "technoglobe-6fabf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14257532661:android:6eb34fcce2943172",
+        "android_client_info": {
+          "package_name": "com.tusharmalik.technoglobe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14257532661-se64gdoen5f7gdmtqumksrpgh3lj67ep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tusharmalik.technoglobe",
+            "certificate_hash": "93b30ff46b92aac4959c2ad41e55fc4dfe34d783"
+          }
+        },
+        {
+          "client_id": "14257532661-2jc4cp2303qjh7loiiutnrai0m9hlslt.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "14257532661-2jc4cp2303qjh7loiiutnrai0m9hlslt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnWct1OaatySZ46y8Gof7WqaL9KSEUxTw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14257532661-2jc4cp2303qjh7loiiutnrai0m9hlslt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

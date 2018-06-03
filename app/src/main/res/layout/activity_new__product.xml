@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tusharmalik.technoglobe.New_Product">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PRODUCT NAME"
+        android:maxWidth="80dp"
+        android:textStyle="bold"
+        android:id="@+id/pname"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PRODUCT DESCRIPTION"
+        android:maxWidth="80dp"
+        android:id="@+id/pdesc"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PRODUCT PRICE"
+        android:maxWidth="80dp"
+        android:id="@+id/pprice"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ADD"
+        android:background="@color/lightGreen"
+        android:layout_margin="20dp"
+        android:id="@+id/btnAdd"/>
+
+</LinearLayout>
