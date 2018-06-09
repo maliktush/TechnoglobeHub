@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.tusharmalik.technoglobe.Front;
@@ -17,6 +18,7 @@ import com.tusharmalik.technoglobe.R;
 import com.tusharmalik.technoglobe.SelectionActivity;
 import com.tusharmalik.technoglobe.zoomactivity;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -46,7 +48,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
     }
 
     @Override
-    public void onBindViewHolder(RecordViewHolder holder, int position) {
+    public void onBindViewHolder(RecordViewHolder holder, final int position) {
         final Seller seller=records.get(position);
         holder.bindView(records.get(position));
         Picasso.get()
@@ -68,9 +70,48 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
         holder.iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    context.startActivity(new Intent(context, zoomactivity.class));
+                    Intent i= (new Intent(context, zoomactivity.class));
+                     i.putExtra("image_link",seller.getImgurl());
+                    context.startActivity(i);
+//                    Toast.makeText(context, records.get(position).getImgurl(), Toast.LENGTH_SHORT).show();
                 }
             });
+        holder.iv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= (new Intent(context, zoomactivity.class));
+                i.putExtra("image_link",seller.getImgurl2());
+                context.startActivity(i);
+                Toast.makeText(context, records.get(position).getImgurl2(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.iv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= (new Intent(context, zoomactivity.class));
+                i.putExtra("image_link",seller.getImgurl3());
+                context.startActivity(i);
+                Toast.makeText(context, records.get(position).getImgurl3(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.iv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= (new Intent(context, zoomactivity.class));
+                i.putExtra("image_link",seller.getImgurl4());
+                context.startActivity(i);
+                Toast.makeText(context, records.get(position).getImgurl4(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.iv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= (new Intent(context, zoomactivity.class));
+                i.putExtra("image_link",seller.getImgurl5());
+                context.startActivity(i);
+                Toast.makeText(context, records.get(position).getImgurl5(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         }
 
