@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tusharmalik.technoglobe">
+
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -11,18 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Register" />
-        <activity android:name=".HomeActivity" >
-        <intent-filter>
+        <activity android:name=".HomeActivity">
+            <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+
         </activity>
-        <activity android:name=".New_Product"></activity>
+        <activity android:name=".New_Product" />
+        <activity android:name=".Front" >
+
+
+        </activity>
+        <activity android:name=".SelectionActivity" />
+        <activity
+            android:name=".BuyerActivity"
+            android:label="@string/title_activity_buyer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".zoomactivity" />
+
     </application>
 
 </manifest>

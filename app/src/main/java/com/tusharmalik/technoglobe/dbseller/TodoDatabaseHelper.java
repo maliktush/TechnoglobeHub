@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class TodoDatabaseHelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "Buyer.db";
+    public static final String DB_NAME = "Seller.db";
     public static final int DB_VER = 1;
     public TodoDatabaseHelper(Context context) {
         super(context, DB_NAME,null,DB_VER);
@@ -17,7 +17,7 @@ public class TodoDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(BuyerTable.CMD_CREATE_TABLE);
+        sqLiteDatabase.execSQL(SellerTable.CMD_CREATE_TABLE);
     }
 
     @Override

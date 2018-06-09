@@ -29,6 +29,48 @@
         android:maxWidth="80dp"
         android:id="@+id/pprice"
         />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PRODUCT QUANTITY"
+        android:maxWidth="80dp"
+        android:id="@+id/pquantity"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IMAGE URL"
+        android:maxWidth="80dp"
+        android:id="@+id/pimage"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IMAGE URL 2 (optional)"
+        android:maxWidth="80dp"
+        android:id="@+id/pimage2"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IMAGE URL 3 (optional)"
+        android:maxWidth="80dp"
+        android:id="@+id/pimage3"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IMAGE URL 4 (optional)"
+        android:maxWidth="80dp"
+        android:id="@+id/pimage4"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IMAGE URL 5 (optional)"
+        android:maxWidth="80dp"
+        android:id="@+id/pimage5"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,5 +79,6 @@
         android:background="@color/lightGreen"
         android:layout_margin="20dp"
         android:id="@+id/btnAdd"/>
+
 
 </LinearLayout>

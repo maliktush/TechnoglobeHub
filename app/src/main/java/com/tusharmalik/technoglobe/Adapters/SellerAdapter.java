@@ -1,13 +1,21 @@
 package com.tusharmalik.technoglobe.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tusharmalik.technoglobe.Models.Buyer;
+import com.squareup.picasso.Picasso;
+import com.tusharmalik.technoglobe.Front;
+import com.tusharmalik.technoglobe.HomeActivity;
+import com.tusharmalik.technoglobe.Models.Seller;
 import com.tusharmalik.technoglobe.R;
+import com.tusharmalik.technoglobe.SelectionActivity;
+import com.tusharmalik.technoglobe.zoomactivity;
 
 import java.util.ArrayList;
 
@@ -17,13 +25,16 @@ import java.util.ArrayList;
 
 public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordViewHolder>{
 
-    private ArrayList<Buyer> records;
+    private ArrayList<Seller> records;
+    Context context;
 
-    public SellerAdapter(ArrayList<Buyer> records) {
+
+    public SellerAdapter(ArrayList<Seller> records, Context context) {
         this.records = records;
+        this.context = context;
     }
 
-    public void setRecords(ArrayList<Buyer> records) {
+    public void setRecords(ArrayList<Seller> records) {
         this.records = records;
         notifyDataSetChanged();
     }
@@ -36,8 +47,32 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
 
     @Override
     public void onBindViewHolder(RecordViewHolder holder, int position) {
+        final Seller seller=records.get(position);
         holder.bindView(records.get(position));
-    }
+        Picasso.get()
+                .load(seller.getImgurl())
+                .into(holder.iv);
+        Picasso.get()
+                .load(seller.getImgurl2())
+                .into(holder.iv2);
+        Picasso.get()
+                .load(seller.getImgurl3())
+                .into(holder.iv3);
+        Picasso.get()
+                .load(seller.getImgurl4())
+                .into(holder.iv4);
+        Picasso.get()
+                .load(seller.getImgurl5())
+                .into(holder.iv5);
+
+        holder.iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    context.startActivity(new Intent(context, zoomactivity.class));
+                }
+            });
+
+        }
 
     @Override
     public int getItemCount() {
@@ -45,19 +80,39 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
     }
 
     class RecordViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName,tvDescription,tvPrice;
+        TextView tvName,tvDescription,tvPrice,tvQuantity;
+        ImageView iv,iv2,iv3,iv4,iv5,ivzoom;
 
         public RecordViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvQuantity=itemView.findViewById(R.id.tvQuantity);
+            iv=itemView.findViewById(R.id.iv);
+            iv2=itemView.findViewById(R.id.iv2);
+            iv3=itemView.findViewById(R.id.iv3);
+            iv4=itemView.findViewById(R.id.iv4);
+            iv5=itemView.findViewById(R.id.iv5);
+            ivzoom=itemView.findViewById(R.id.ivzoom);
 
         }
-        void bindView(Buyer record){
+
+        void bindView(Seller record){
+
+//            iv.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent i=new Intent(HomeActivity.class,zoomactivity.class);
+//                    startActivity(i);
+//                }
+//            });
+
             tvName.setText(record.getData());
             tvDescription.setText(record.getDescription());
             tvPrice.setText(record.getPrice());
+            tvQuantity.setText(record.getQuantity());
+
         }
     }
 }

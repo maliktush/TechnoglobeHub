@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/backgrd"
+    tools:context="com.tusharmalik.technoglobe.SelectionActivity">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/homepic"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tvSelectLanguage"
+            android:text="SELECT THE TYPE"
+            android:textSize="35sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnSeller"
+                android:text="SELLER"
+                android:textSize="40dp"
+                android:textColor="#FFF"
+                android:background="@color/lightGreen"
+                android:layout_margin="10dp"
+                android:layout_width="150dp"
+                android:layout_height="70dp" />
+
+            <Button
+                android:id="@+id/btnBuyer"
+                android:text="BUYER"
+                android:textSize="40dp"
+                android:textColor="#FFF"
+                android:background="@color/lightGreen"
+                android:layout_margin="20dp"
+                android:layout_width="150dp"
+                android:layout_height="70dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
