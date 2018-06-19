@@ -14,7 +14,7 @@ public class zoomactivity extends AppCompatActivity {
         setContentView(R.layout.activity_zoomactivity);
         ivz=findViewById(R.id.ivz);
         String res=getIntent().getStringExtra("image_link");
-        ivz.setImageURI(Uri.parse(res));
+//        ivz.setImageURI(Uri.parse(res));
         Toast.makeText(this,getIntent().getStringExtra("image_link") , Toast.LENGTH_SHORT).show();
 
     }

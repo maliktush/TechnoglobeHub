@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgrd">
+
+    <TextView
+        android:id="@+id/detailName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/buttonBACK"
+        android:gravity="center"
+        android:text="NAME"
+        android:textSize="50dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/buttonBACK"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/lldp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/buttonbgrd"
+        android:text="GO BACK"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/detailDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/detailName"
+        android:text="Imported
+New Release! Seasonal Hot Item
+Vintage retro aviator design with adjustable nose pads
+HD flash mirrored lens, UV400 block 100% harmful UVA/UVB Rays
+Perfect for all outdoor activities like, travelling, hiking, driving and daily use
+30 Day Money Back Guarantee: All Jim Halo customers enjoy 30 Day Money Back Guarantee. Customers can return and get refunded in case the purchasing is not satisfactory for any reason" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detailDesc"
+        android:layout_marginTop="10dp"
+        android:id="@+id/lldp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOW AT A NEW PRICE OF : "
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RS 1000(10% discount)"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#ff0000"
+            android:id="@+id/detailprice"/>
+    </LinearLayout>
+    <TextView
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SELECT THE QUANTITY"
+        android:textSize="20dp"
+        android:layout_below="@+id/lldp"
+        android:id="@+id/tvqpd"/>
+
+    <Spinner
+
+        android:id="@+id/detailspinner"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/tvqpd"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/tvqpd"
+        android:background="@drawable/buttonbgrd"
+        android:tooltipText="Select the category" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detailspinner"
+        android:layout_marginTop="10dp"
+        android:id="@+id/lltp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOTAL PRICE TO PAY : " />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RS 5000"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#ff0000"
+            android:id="@+id/detailtotalprice"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lltp"
+        android:id="@+id/lldp1"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mona"
+            android:layout_marginLeft="10dp"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mona"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/lldp1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <Button
+            android:id="@+id/DetailBUY"
+            android:layout_weight="1"
+            android:text="BUY NOW"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:textStyle="bold"
+            android:background="@drawable/buttonbgrd"/>
+        <Button
+            android:id="@+id/DetailADDTOCART"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:text="ADD TO CART"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonbgrd"/>
+    </LinearLayout>
+</RelativeLayout>

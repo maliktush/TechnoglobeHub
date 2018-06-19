@@ -32,10 +32,30 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="DISCOUNT OFFERRED(in percentage)"
+        android:maxWidth="80dp"
+        android:id="@+id/pdiscount"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="PRODUCT QUANTITY"
         android:maxWidth="80dp"
         android:id="@+id/pquantity"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/pcat"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:tooltipText="Select the category"
+
+
+        />
+    </LinearLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

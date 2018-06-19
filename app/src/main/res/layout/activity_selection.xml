@@ -45,8 +45,8 @@
                 android:id="@+id/btnSeller"
                 android:text="SELLER"
                 android:textSize="40dp"
-                android:textColor="#FFF"
-                android:background="@color/lightGreen"
+
+                android:background="@drawable/buttonbgrd"
                 android:layout_margin="10dp"
                 android:layout_width="150dp"
                 android:layout_height="70dp" />
@@ -55,8 +55,8 @@
                 android:id="@+id/btnBuyer"
                 android:text="BUYER"
                 android:textSize="40dp"
-                android:textColor="#FFF"
-                android:background="@color/lightGreen"
+
+                android:background="@drawable/buttonbgrd"
                 android:layout_margin="20dp"
                 android:layout_width="150dp"
                 android:layout_height="70dp" />

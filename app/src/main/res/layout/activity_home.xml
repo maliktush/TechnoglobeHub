@@ -6,13 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.tusharmalik.technoglobe.HomeActivity">
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/homepic"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/RecordsList"

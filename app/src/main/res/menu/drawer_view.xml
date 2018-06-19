@@ -2,20 +2,60 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Electronics" />
+            android:id="@+id/nav_laps"
+            android:icon="@drawable/ic_laptop_black_24dp"
+            android:title="Electronics"
+            />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_mobiles"
+            android:icon="@drawable/ic_phone"
+            android:title="Mobiles" />
+        <item
+            android:id="@+id/nav_toy"
+            android:icon="@drawable/ic_puzzle"
             android:title="Toys" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Grocery" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_fashion"
+            android:icon="@drawable/ic_icon"
             android:title="Fashion" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_restaurant_cutlery"
+            android:title="Home And Garden" />
+
+        <item
+            android:id="@+id/nav_sports"
+            android:icon="@drawable/ic_soccer_ball_variant"
+            android:title="Sports and Outdoors" />
+        <item
+            android:id="@+id/nav_automobiles"
+            android:icon="@drawable/ic_sedan_car_front"
+            android:title="Automobiles and Motorcycles" />
+        <item
+            android:id="@+id/nav_food"
+            android:icon="@drawable/ic_food"
+            android:title="Food" />
+
+
     </group>
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_call"
+                android:icon="@drawable/ic_call"
+                android:title="Call" />
+            <item
+                android:id="@+id/nav_mail"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Mail" />
+            <item
+                android:id="@+id/nav_fb"
+                android:icon="@drawable/ic_facebook"
+                android:title="Facebook" />
+            <item
+                android:id="@+id/nav_twitter"
+                android:icon="@drawable/ic_twitter"
+                android:title="Twitter" />
+        </menu>
+    </item>
 </menu>

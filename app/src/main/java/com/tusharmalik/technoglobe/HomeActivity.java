@@ -26,11 +26,26 @@ public class HomeActivity extends AppCompatActivity {
         ImageView iv,ivzoom;
         FloatingActionButton addb;
 
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        RecordDatabaseHelper myDbHelper = new RecordDatabaseHelper(this);
+//        final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
+//        records = RecordTable.getAllRecords(writeDb);
+//        RecordTable.getTableAsString(writeDb,"Records");
+//        recordAdapter = new RecordAdapter(records,MainActivity.this);
+//        rvRecordsList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+//        rvRecordsList.setAdapter(recordAdapter);
+//        recordAdapter.notifyDataSetChanged();
+//    }
+
+
     @Override
     protected void onStart() {
         super.onStart();
         TodoDatabaseHelper myDbHelper = new TodoDatabaseHelper(this);
         final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
+//        SellerTable.getTableAsString(writeDb,"Sellers");
         records = SellerTable.getAllTodos(writeDb);
         sellerAdapter = new SellerAdapter(records,HomeActivity.this);
         ProductList.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
@@ -44,19 +59,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         TodoDatabaseHelper myDbHelper = new TodoDatabaseHelper(this);
-        iv=findViewById(R.id.iv);
-        ivzoom=findViewById(R.id.ivzoom);
-        addb=findViewById(R.id.addb);
+//        iv=findViewById(R.id.iv);
+//        ivzoom=findViewById(R.id.ivzoom);
+//        addb=findViewById(R.id.addb);
 
 
-        SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
+        final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
         SQLiteDatabase readDb = myDbHelper.getReadableDatabase();
         ProductList = findViewById(R.id.RecordsList);
         sellerAdapter = new SellerAdapter(records,HomeActivity.this);
         ProductList.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
         ProductList.setAdapter(sellerAdapter);
 
-        final SQLiteDatabase finalWriteDb = writeDb;
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -65,13 +80,23 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                int position = viewHolder.getAdapterPosition() +1;
-//                int demoId = SellerTable.getRecord(position, finalWriteDb).getId();
-                SellerTable.deleteItem(finalWriteDb, position);
-                records.remove(position);
+                int position = viewHolder.getAdapterPosition() ;
+           int demoId = SellerTable.getRecord((records.get(position).getData()), writeDb).getId();
+                SellerTable.deleteItem(writeDb, demoId);
+                records.remove(viewHolder.getAdapterPosition());
                 records.trimToSize();
                 sellerAdapter.notifyDataSetChanged();
             }
+//            @Override
+//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+//                int position = viewHolder.getAdapterPosition();
+//                int demoId = RecordTable.getRecord(records.get(position).getPolicyNum(),writeDb).getId();
+//                RecordTable.deleteRecord(writeDb, demoId);
+//                records.remove(viewHolder.getAdapterPosition());
+//                records.trimToSize();
+//                recordAdapter.notifyDataSetChanged();
+//            }
+//
         });
 
         itemTouchHelper.attachToRecyclerView(ProductList);

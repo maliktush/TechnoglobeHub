@@ -1,8 +1,11 @@
 package com.tusharmalik.technoglobe.dbseller;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import static com.tusharmalik.technoglobe.dbseller.SellerTable.TABLE_NAME;
 
 /**
  * Created by tushm on 31-05-2018.
@@ -22,6 +25,15 @@ public class TodoDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+    public  Cursor getInfo(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT "+ SellerTable.Columns.NAME +", "+SellerTable.Columns.PRICE+", "+ SellerTable.Columns.DISCOUNT
+                + SellerTable.Columns.IMGURL +" FROM " + TABLE_NAME;
+        Cursor data = db.rawQuery(query, null);
+        return data;
 
     }
 }

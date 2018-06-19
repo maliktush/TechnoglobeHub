@@ -121,7 +121,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
     }
 
     class RecordViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName,tvDescription,tvPrice,tvQuantity;
+        TextView tvName,tvDescription,tvPrice,tvQuantity,tvcategory,tvDiscount;
         ImageView iv,iv2,iv3,iv4,iv5,ivzoom;
 
         public RecordViewHolder(View itemView) {
@@ -129,13 +129,15 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
             tvName = itemView.findViewById(R.id.tvName);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvDiscount=itemView.findViewById(R.id.tvDiscount);
             tvQuantity=itemView.findViewById(R.id.tvQuantity);
+            tvcategory=itemView.findViewById(R.id.tvCategory);
             iv=itemView.findViewById(R.id.iv);
             iv2=itemView.findViewById(R.id.iv2);
             iv3=itemView.findViewById(R.id.iv3);
             iv4=itemView.findViewById(R.id.iv4);
             iv5=itemView.findViewById(R.id.iv5);
-            ivzoom=itemView.findViewById(R.id.ivzoom);
+//            ivzoom=itemView.findViewById(R.id.ivzoom);
 
         }
 
@@ -152,7 +154,9 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
             tvName.setText(record.getData());
             tvDescription.setText(record.getDescription());
             tvPrice.setText(record.getPrice());
+            tvDiscount.setText(record.getDiscount()+"%");
             tvQuantity.setText(record.getQuantity());
+            tvcategory.setText(record.getCategory());
 
         }
     }
