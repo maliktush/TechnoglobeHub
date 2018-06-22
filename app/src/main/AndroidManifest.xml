@@ -18,22 +18,23 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".New_Product" />
         <activity android:name=".Front" />
-        <activity android:name=".SelectionActivity" />
+        <activity android:name=".SelectionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".BuyerActivity"
             android:label="@string/title_activity_buyer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".zoomactivity" />
         <activity android:name=".IconFragment" />
-        <activity android:name=".Payment"></activity>
-        <activity android:name=".Product_Details">
-
-        </activity>
-        <activity android:name=".testing"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".Payment" />
+        <activity android:name=".Product_Details"></activity>
+        <activity android:name=".testing" />
+        <activity android:name=".Cart"></activity>
     </application>
 
 </manifest>

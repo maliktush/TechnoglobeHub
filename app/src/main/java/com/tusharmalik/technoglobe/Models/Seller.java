@@ -56,7 +56,7 @@ public class Seller {
     public String getQuantity() {
         return quantity;
     }
-    public String getCategory() {return category;}
+    public  String getCategory() {return category;}
     public String getImgurl() {return imgurl;}
     public void setDescription(String description) {
         this.description = description;

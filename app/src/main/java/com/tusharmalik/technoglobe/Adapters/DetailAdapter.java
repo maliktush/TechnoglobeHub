@@ -18,16 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by tushm on 18-06-2018.
+ * Created by tushm on 22-06-2018.
  */
 
-public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.RecordViewHolder>{
+public class DetailAdapter  extends RecyclerView.Adapter<DetailAdapter.RecordViewHolder>{
 
     private ArrayList<Seller> records;
     Context context;
 
 
-    public BuyerAdapter(ArrayList<Seller> records, Context context) {
+    public DetailAdapter(ArrayList<Seller> records, Context context) {
         this.records = records;
         this.context = context;
     }
@@ -38,21 +38,22 @@ public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.RecordViewHo
     }
 
     @Override
-    public BuyerAdapter.RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DetailAdapter.RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater li = LayoutInflater.from(parent.getContext());
-        return new BuyerAdapter.RecordViewHolder(li.inflate(R.layout.buyer_list_item,parent,false));
+        return new DetailAdapter.RecordViewHolder(li.inflate(R.layout.activity_product__details,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(BuyerAdapter.RecordViewHolder holder, final int position) {
+    public void onBindViewHolder(DetailAdapter.RecordViewHolder holder, final int position) {
         final Seller seller=records.get(position);
         holder.bindView(records.get(position));
         Picasso.get()
                 .load(seller.getImgurl())
-                .into(holder.ivbuyer);
-//        Picasso.get()
-//                .load(seller.getImgurl2())
-//                .into(holder.iv2);
+                .into(holder.detailimg1);
+
+        Picasso.get()
+                .load(seller.getImgurl2())
+                .into(holder.detailimg2);
 //        Picasso.get()
 //                .load(seller.getImgurl3())
 //                .into(holder.iv3);
@@ -63,7 +64,7 @@ public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.RecordViewHo
 //                .load(seller.getImgurl5())
 //                .into(holder.iv5);
 //
-        holder.ivbuyer.setOnClickListener(new View.OnClickListener() {
+        holder.detailimg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i= (new Intent(context, zoomactivity.class));
@@ -81,33 +82,7 @@ public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.RecordViewHo
 //                Toast.makeText(context, records.get(position).getImgurl2(), Toast.LENGTH_SHORT).show();
 //            }
 //        });
-//        holder.iv3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i= (new Intent(context, zoomactivity.class));
-//                i.putExtra("image_link",seller.getImgurl3());
-//                context.startActivity(i);
-//                Toast.makeText(context, records.get(position).getImgurl3(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        holder.iv4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i= (new Intent(context, zoomactivity.class));
-//                i.putExtra("image_link",seller.getImgurl4());
-//                context.startActivity(i);
-//                Toast.makeText(context, records.get(position).getImgurl4(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        holder.iv5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i= (new Intent(context, zoomactivity.class));
-//                i.putExtra("image_link",seller.getImgurl5());
-//                context.startActivity(i);
-//                Toast.makeText(context, records.get(position).getImgurl5(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
 
     }
 
@@ -124,15 +99,18 @@ public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.RecordViewHo
     }
 
     class RecordViewHolder extends RecyclerView.ViewHolder{
-        TextView tvNamebuyer,tvPricebuyer,tvDiscountbuyer;
-        ImageView ivbuyer;
+        TextView detailname,detaildesc,detailtotprice,detaildiscount;
+        ImageView detailimg1,detailimg2;
 
         public RecordViewHolder(View itemView) {
             super(itemView);
-            tvNamebuyer = itemView.findViewById(R.id.buyName);
-            tvPricebuyer = itemView.findViewById(R.id.buyPrice);
-            tvDiscountbuyer=itemView.findViewById(R.id.buyNewprice);
-            ivbuyer=itemView.findViewById(R.id.buyimg);
+            detailname = itemView.findViewById(R.id.detailName);
+            detaildesc = itemView.findViewById(R.id.detailDesc);
+            detailtotprice=itemView.findViewById(R.id.detailtotalprice);
+            detaildiscount=itemView.findViewById(R.id.detailprice);
+            detailimg1=itemView.findViewById(R.id.detailimg1);
+            detailimg2=itemView.findViewById(R.id.detailimg2);
+
 
 
         }
@@ -147,9 +125,10 @@ public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.RecordViewHo
 //                }
 //            });
 
-            tvNamebuyer.setText(record.getData());
-            tvPricebuyer.setText(record.getPrice());
-            tvDiscountbuyer.setText(record.getDiscount());
+            detailname.setText(record.getData());
+            detaildesc.setText(record.getDescription());
+            detailtotprice.setText(record.getPrice());
+            detaildiscount.setText(record.getDiscount());
 
 
         }

@@ -28,29 +28,36 @@
         android:id="@+id/ll"
         >
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:maxWidth="350dp"
+        android:layout_weight="8"
         android:layout_height="wrap_content"
         android:hint="Enter the product u want "
+        android:id="@+id/etsearch"
         />
         <ImageView
-            android:layout_width="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="40dp"
             android:scaleType="fitXY"
-            android:src="@drawable/search"/>
+            android:clickable="true"
+            android:src="@drawable/search"
+            android:id="@+id/ivsearch"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="4"
         android:maxWidth="350dp"
         android:hint="Enter your demand price"
         android:inputType="numberDecimal"
         />
         <Button
-            android:layout_width="50dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="40dp"
             android:text="ENTER"
             android:background="@drawable/buttonbgrd"/>
@@ -59,7 +66,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/buyerItemList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="10dp"
         />
 
