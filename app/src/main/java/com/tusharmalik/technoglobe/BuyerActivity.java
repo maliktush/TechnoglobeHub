@@ -27,11 +27,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tusharmalik.technoglobe.Adapters.BuyerAdapter;
+import com.tusharmalik.technoglobe.Adapters.CartAdapter;
 import com.tusharmalik.technoglobe.Adapters.SellerAdapter;
 import com.tusharmalik.technoglobe.Models.Seller;
 import com.tusharmalik.technoglobe.dbseller.SellerTable;
@@ -42,10 +44,12 @@ import java.util.ArrayList;
 public class BuyerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     Context context;
-    EditText search;
-    ImageView ivsearch;
+    EditText search,demand;
+    ImageView ivsearch,cart,logout;
     RecyclerView recyclerView;
     BuyerAdapter buyerAdapter;
+    CartAdapter cartAdapter;
+    Button viewcart,demandbtn;
     ArrayList<Seller> records = new ArrayList<Seller>();
     ArrayList<Seller> records1 = new ArrayList<Seller>();
     ArrayList<Seller> records2 = new ArrayList<Seller>();
@@ -55,9 +59,11 @@ public class BuyerActivity extends AppCompatActivity
     ArrayList<Seller> records6 = new ArrayList<Seller>();
     ArrayList<Seller> records7 = new ArrayList<Seller>();
     ArrayList<Seller> records8 = new ArrayList<Seller>();
+    ArrayList<Seller> recordscart = new ArrayList<Seller>();
 
 
-     FragmentManager fragmentManager;
+
+    FragmentManager fragmentManager;
 
     protected void onStart() {
         super.onStart();
@@ -77,6 +83,69 @@ public class BuyerActivity extends AppCompatActivity
         setContentView(R.layout.activity_buyer);
         search=findViewById(R.id.etsearch);
         ivsearch=findViewById(R.id.ivsearch);
+        cart=findViewById(R.id.btnviewcart);
+//        viewcart=findViewById(R.id.btnviewcart);
+        demand=findViewById(R.id.demand);
+        logout=findViewById(R.id.button2);
+        demandbtn=findViewById(R.id.demandbutton);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent exit=new Intent(BuyerActivity.this,Front.class);
+                startActivity(exit);
+            }
+        });
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ic=new Intent (BuyerActivity.this,Cart.class);
+                startActivity(ic);
+            }
+        });
+        demandbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(demand.getText().toString().contains("https://www.amazon")){
+                    new AlertDialog.Builder(BuyerActivity.this)
+                            .setTitle("Demand price mail")
+                            .setMessage("Please send us the simple mail for your demand price by clicking on OK")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                                    String[] TO = {"tushmalik09@gmail.com"};
+                                    emailIntent.setData(Uri.parse("mailto:"));
+                                    emailIntent.setType("text/plain");
+                                    emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Demand  price feature");
+                                    emailIntent.putExtra(Intent.EXTRA_TEXT, demand.getText().toString());
+
+                                    try {
+                                        startActivity(emailIntent);
+                                        finish();
+                                    } catch (android.content.ActivityNotFoundException ex) {
+                                        Toast.makeText(BuyerActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }})
+                            .setNegativeButton(android.R.string.no, null).show();
+                    // do whatever
+
+//                    Toast.makeText(BuyerActivity.this, "Your reques has been recieved and will we repond to u in one hour", Toast.LENGTH_LONG).show();
+
+                }
+                else
+                    Toast.makeText(BuyerActivity.this, "URL is not valid", Toast.LENGTH_LONG).show();
+
+            }
+        });
+//        viewcart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent cart=new Intent(BuyerActivity.this,Cart.class);
+//                startActivity(cart);
+//            }
+//        });
         ivsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,21 +158,21 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb1 = myDbHelper1.getWritableDatabase();
                 Cursor data1=TodoDatabaseHelper.getInfoSearch(word,writeDb1);
 
-                Seller work1=new Seller();
 
 
                 while(data1.moveToNext()){
 
+                    Seller work1=new Seller();
 
                     work1.name=data1.getString(1);
                     work1.price= data1.getString(3);
                     work1.discount=data1.getString(4);
                     work1.imgurl=data1.getString(7);
+                    records1.add(work1);
 
 
                 }
 
-                records1.add(work1);
 
 
 
@@ -130,7 +199,7 @@ public class BuyerActivity extends AppCompatActivity
 
 
         final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
-        SQLiteDatabase readDb = myDbHelper.getReadableDatabase();
+        final SQLiteDatabase readDb = myDbHelper.getReadableDatabase();
 
 //
         Cursor data=TodoDatabaseHelper.getInfo(writeDb);
@@ -175,10 +244,14 @@ public class BuyerActivity extends AppCompatActivity
                     @Override public void onItemClick(View view, int position) {
                         Intent i=new Intent(BuyerActivity.this,Product_Details.class);
                         i.putExtra("pos", position);
+                        i.putExtra("record",records);
+                        i.putExtra("record2",recordscart);
                         startActivity(i);
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override public void onLongItemClick(View view, final int position) {
+
+
                         new AlertDialog.Builder(BuyerActivity.this)
                                 .setTitle("CART")
                                 .setMessage("Are you sure you want to add this to your cart ?")
@@ -186,8 +259,46 @@ public class BuyerActivity extends AppCompatActivity
 
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         Toast.makeText(BuyerActivity.this, "Added to your Cart", Toast.LENGTH_SHORT).show();
+                                        TodoDatabaseHelper myDbHelpercart = new TodoDatabaseHelper(BuyerActivity.this);
+
+
+                                        final SQLiteDatabase writeDbcart = myDbHelpercart.getWritableDatabase();
+                                        SQLiteDatabase readDbcart = myDbHelpercart.getReadableDatabase();
+
+//
+                                        Cursor datacart=TodoDatabaseHelper.getInfo(writeDbcart);
+
+
+                                        int count=0;
+                                        datacart.moveToPosition(position-1);
+                                        while(datacart.moveToNext()&&count==0){
+
+                                            Seller workcart=new Seller();
+
+                                            workcart.name=datacart.getString(1);
+                                            workcart.price= datacart.getString(3);
+                                            workcart.imgurl=datacart.getString(7);
+                                            recordscart.add(workcart);
+                                            count++;
+                                        }
+
+
+
+
+
+
+
+//        if (records.isEmpty()){
+//
+//            createTextView.setVisibility(View.VISIBLE);
+//
+//        }else {
                                         Intent i=new Intent(BuyerActivity.this,Cart.class);
+                                        i.putExtra("record" , recordscart);
                                         startActivity(i);
+
+
+
                                     }})
                                 .setNegativeButton(android.R.string.no, null).show();
                         // do whatever
@@ -207,14 +318,14 @@ public class BuyerActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         fragmentManager = getSupportFragmentManager();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(BuyerActivity.this,Payment.class);
-                startActivity(i);
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i=new Intent(BuyerActivity.this,Payment.class);
+//                startActivity(i);
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -319,21 +430,20 @@ public class BuyerActivity extends AppCompatActivity
                 SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
                 Cursor data=TodoDatabaseHelper.getInfoFashion(writeDb);
 
-                Seller work=new Seller();
 
 
                 while(data.moveToNext()){
 
-
+                    Seller work=new Seller();
                     work.name=data.getString(1);
                     work.price= data.getString(3);
                     work.discount=data.getString(4);
                     work.imgurl=data.getString(7);
 
+                    records8.add(work);
 
                 }
 
-                records8.add(work);
 
 
 
@@ -367,21 +477,21 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb1 = myDbHelper1.getWritableDatabase();
                 Cursor data1=TodoDatabaseHelper.getInfoToys(writeDb1);
 
-                Seller work1=new Seller();
+
 
 
                 while(data1.moveToNext()){
 
-
+                    Seller work1=new Seller();
                     work1.name=data1.getString(1);
                     work1.price= data1.getString(3);
                     work1.discount=data1.getString(4);
                     work1.imgurl=data1.getString(7);
 
-
+                    records1.add(work1);
                 }
 
-                records1.add(work1);
+
 
 
 
@@ -415,21 +525,21 @@ public class BuyerActivity extends AppCompatActivity
                 Cursor data2=TodoDatabaseHelper.getInfoMobile(writeDb);
 
 
-                Seller work2=new Seller();
+
 
 
                 while(data2.moveToNext()){
-
+                    Seller work2=new Seller();
 
                     work2.name=data2.getString(1);
                     work2.price= data2.getString(3);
                     work2.discount=data2.getString(4);
                     work2.imgurl=data2.getString(7);
+                    records2.add(work2);
 
 
                 }
 
-                records2.add(work2);
 
 
 
@@ -462,10 +572,10 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb3 = myDbHelper3.getWritableDatabase();
                 Cursor data3=TodoDatabaseHelper.getInfoElectro(writeDb3);
 
-                Seller work3=new Seller();
 
 
                 while(data3.moveToNext()){
+                    Seller work3=new Seller();
 
 
                     work3.name=data3.getString(1);
@@ -473,10 +583,10 @@ public class BuyerActivity extends AppCompatActivity
                     work3.discount=data3.getString(4);
                     work3.imgurl=data3.getString(7);
 
+                    records3.add(work3);
 
                 }
 
-                records3.add(work3);
 
 
 
@@ -509,10 +619,10 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb4 = myDbHelper4.getWritableDatabase();
                 Cursor data4=TodoDatabaseHelper.getInfoHome(writeDb4);
 
-                Seller work4=new Seller();
 
 
                 while(data4.moveToNext()){
+                    Seller work4=new Seller();
 
 
                     work4.name=data4.getString(1);
@@ -520,10 +630,10 @@ public class BuyerActivity extends AppCompatActivity
                     work4.discount=data4.getString(4);
                     work4.imgurl=data4.getString(7);
 
+                    records4.add(work4);
 
                 }
 
-                records4.add(work4);
 
 
 
@@ -557,21 +667,21 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb5 = myDbHelper5.getWritableDatabase();
                 Cursor data5=TodoDatabaseHelper.getInfoSport(writeDb5);
 
-                Seller work5=new Seller();
 
 
                 while(data5.moveToNext()){
 
+                    Seller work5=new Seller();
 
                     work5.name=data5.getString(1);
                     work5.price= data5.getString(3);
                     work5.discount=data5.getString(4);
                     work5.imgurl=data5.getString(7);
 
-
+                    records5.add(work5);
                 }
 
-                records5.add(work5);
+
 
 
 
@@ -603,21 +713,21 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb6 = myDbHelper6.getWritableDatabase();
                 Cursor data6=TodoDatabaseHelper.getInfoCar(writeDb6);
 
-                Seller work6=new Seller();
+
 
 
                 while(data6.moveToNext()){
 
-
+                    Seller work6=new Seller();
                     work6.name=data6.getString(1);
                     work6.price= data6.getString(3);
                     work6.discount=data6.getString(4);
                     work6.imgurl=data6.getString(7);
+                    records6.add(work6);
 
 
                 }
 
-                records6.add(work6);
 
 
 
@@ -650,21 +760,21 @@ public class BuyerActivity extends AppCompatActivity
                 final SQLiteDatabase writeDb7 = myDbHelper7.getWritableDatabase();
                 Cursor data7=TodoDatabaseHelper.getInfoFood(writeDb7);
 
-                Seller work7=new Seller();
 
 
                 while(data7.moveToNext()){
 
+                    Seller work7=new Seller();
 
                     work7.name=data7.getString(1);
                     work7.price= data7.getString(3);
                     work7.discount=data7.getString(4);
                     work7.imgurl=data7.getString(7);
+                    records7.add(work7);
 
 
                 }
 
-                records7.add(work7);
 
 
 

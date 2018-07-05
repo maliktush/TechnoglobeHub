@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         edMobNum =  findViewById(R.id.edMobNum);
         edPassword = findViewById(R.id.edPassword);
-
+        final String[] mobilenumber = new String[1];
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressDialog.dismiss();
                                     if(task.isSuccessful()){
+                                        mobilenumber[0] =edMobNum.getText().toString();
                                         Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

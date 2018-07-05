@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:clickable="true">
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/ll1"
         android:orientation="horizontal"
         android:gravity="right"
@@ -14,37 +14,39 @@
 
 
         <TextView
-            android:id="@+id/buyName"
+            android:id="@+id/CartName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:layout_marginLeft="140dp"
-
+            android:layout_marginLeft="140dp"
+            android:textColor=" #000000"
+            android:textStyle="bold"
             android:hint="NAME"
             android:maxWidth="70dp"
             android:textSize="35sp"
             />
 
-</LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll1"
         android:id="@+id/ll2">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="RS."
             android:layout_marginLeft="140dp"
-            android:textSize="25sp"
-            android:text="RS"
-            />
+            android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/buyPrice"
+            android:id="@+id/CartPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#ff0000"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="1dp"
             android:hint="Price"
+            android:textColor=" #000000"
+            android:maxWidth="70dp"
             android:textSize="25sp" />
     </LinearLayout>
 
@@ -52,26 +54,30 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
 
         android:layout_below="@+id/ll2"
         android:orientation="horizontal"
         >
 
 
-        <TextView
-            android:id="@+id/buyNewprice"
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/cartpayy"
+            android:layout_weight="3"
+            android:layout_height="40dp"
             android:layout_marginLeft="140dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="70"
-            android:textSize="15sp"
-            android:textColor="#ff0000"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="%off"
-            android:textSize="10sp"
-            />
+            android:background=" #ffffff"
+            android:layout_marginRight="20dp"
+            android:text="Proceed to pay "/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/cartdelete"
+            android:layout_weight="0.5"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/delete"/>
 
 
     </LinearLayout>

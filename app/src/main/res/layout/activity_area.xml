@@ -1,0 +1,36 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/tvarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="ENTER YOUR PIN CODE"
+        android:textSize="50dp" />
+    <EditText
+        android:id="@+id/etarea"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="PIN CODE"
+        android:textSize="50dp"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/btnarea"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="NEXT"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="50dp"
+        android:background="@drawable/buttonbgrd"/>
+
+</LinearLayout>

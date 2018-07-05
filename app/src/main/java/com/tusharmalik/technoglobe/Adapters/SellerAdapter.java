@@ -29,11 +29,13 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.RecordView
 
     private ArrayList<Seller> records;
     Context context;
+    LayoutInflater layoutInflater;
 
 
     public SellerAdapter(ArrayList<Seller> records, Context context) {
         this.records = records;
         this.context = context;
+        this.layoutInflater = LayoutInflater.from(context);
     }
 
     public void setRecords(ArrayList<Seller> records) {

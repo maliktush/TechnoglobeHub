@@ -59,10 +59,7 @@ public class New_Product extends AppCompatActivity {
         });
 
 
-        final String name = edName.getText().toString();
-        final String description= edDescription.getText().toString();
-        final String price = edPrice.getText().toString();
-        final String quantity = edQuantity.getText().toString();
+
 
 
         TodoDatabaseHelper myDbHelper= new TodoDatabaseHelper(this);

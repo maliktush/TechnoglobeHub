@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -32,9 +33,13 @@
         <activity android:name=".zoomactivity" />
         <activity android:name=".IconFragment" />
         <activity android:name=".Payment" />
-        <activity android:name=".Product_Details"></activity>
+        <activity android:name=".Product_Details" />
         <activity android:name=".testing" />
-        <activity android:name=".Cart"></activity>
+        <activity android:name=".Cart" />
+        <activity android:name=".Area" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".Register2" />
+        <activity android:name=".Gmail"></activity>
     </application>
 
 </manifest>

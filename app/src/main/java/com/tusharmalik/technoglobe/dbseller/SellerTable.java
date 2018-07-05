@@ -77,7 +77,6 @@ public class SellerTable {
         try{
 
             db.delete(TABLE_NAME, "ID="+t, null);
-
         }
         catch(Exception e){}
 
@@ -103,7 +102,7 @@ public class SellerTable {
     }
 
 
-    public static Seller getRecord(String id, SQLiteDatabase db){
+    public static Seller getRecord(String description, SQLiteDatabase db){
 //        id = 1;
         Cursor cursor = db.query(TABLE_NAME,new String[]{
                 Columns.ID,
@@ -120,7 +119,7 @@ public class SellerTable {
                 Columns.IMGURL5,
 
 
-        }, Columns.ID + "=?", new String[]{String.valueOf(id)},null,null,null,null);
+        }, Columns.DESCRIPTION + "=?", new String[]{String.valueOf(description)},null,null,null,null);
 
         if(cursor!= null && cursor.moveToFirst()) {
 

@@ -2,11 +2,13 @@ package com.tusharmalik.technoglobe.Models;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.Serializable;
+
 /**
  * Created by tushm on 31-05-2018.
  */
 
-public class Seller {
+public class Seller implements Serializable {
     public String name;
     String description;
     int id;
@@ -19,6 +21,7 @@ public class Seller {
     String imgurl3;
     String imgurl4;
     String imgurl5;
+    String verify;
     public Seller(){}
 
     public Seller(int id, String string, String b, String p,String d,String q,String category, String url, String url2, String url3, String url4, String url5) {
