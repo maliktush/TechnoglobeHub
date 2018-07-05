@@ -64,6 +64,8 @@ public class New_Product extends AppCompatActivity {
 
         TodoDatabaseHelper myDbHelper= new TodoDatabaseHelper(this);
         final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
+        final String mob=getIntent().getStringExtra("mob");
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +79,8 @@ public class New_Product extends AppCompatActivity {
                                      edDiscount.getText().toString(),
                                      edQuantity.getText().toString(),
                                      item[0].toString(),
-                                    edIMGURL.getText().toString(),
+                                     mob,
+                                     edIMGURL.getText().toString(),
                                      edIMGURL2.getText().toString(),
                                      edIMGURL3.getText().toString(),
                                      edIMGURL4.getText().toString(),

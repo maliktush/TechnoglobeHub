@@ -24,7 +24,7 @@ public class Seller implements Serializable {
     String verify;
     public Seller(){}
 
-    public Seller(int id, String string, String b, String p,String d,String q,String category, String url, String url2, String url3, String url4, String url5) {
+    public Seller(int id, String string, String b, String p,String d,String q,String category,String verify, String url, String url2, String url3, String url4, String url5) {
         this.id=id;
         this.name=string;
         this.description=b;
@@ -37,6 +37,7 @@ public class Seller implements Serializable {
         this.imgurl3=url3;
         this.imgurl4=url4;
         this.imgurl5=url5;
+        this.verify=verify;
     }
 
     public Seller(int id,String string,String p, String q,String url) {
@@ -61,6 +62,9 @@ public class Seller implements Serializable {
     }
     public  String getCategory() {return category;}
     public String getImgurl() {return imgurl;}
+    public String getVerify() {
+        return verify;
+    }
     public void setDescription(String description) {
         this.description = description;
     }
@@ -75,6 +79,7 @@ public class Seller implements Serializable {
         this.quantity = q;
     }
     public void setCategory(String c) {this.category=c;}
+    public void setVerify(String c) {this.verify=c;}
     public String getImgurl2() {return imgurl2;}
     public String getImgurl3() {return imgurl3;}
     public String getImgurl4() {return imgurl4;}

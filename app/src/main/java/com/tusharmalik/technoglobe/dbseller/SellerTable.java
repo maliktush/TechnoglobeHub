@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.tusharmalik.technoglobe.MainActivity;
 import com.tusharmalik.technoglobe.Models.Seller;
 
 import java.util.ArrayList;
 
+import static android.content.Intent.getIntent;
+import static android.content.Intent.getIntentOld;
 import static com.tusharmalik.technoglobe.dbseller.Const.CMD_CREATE_TABLE_INE;
 import static com.tusharmalik.technoglobe.dbseller.Const.COMMA;
 import static com.tusharmalik.technoglobe.dbseller.Const.LBR;
@@ -24,6 +27,7 @@ import static com.tusharmalik.technoglobe.dbseller.Const.TYPE_TEXT;
 
 public class SellerTable {
     private SellerTable(){}
+
     public static final String TABLE_NAME = "Sellers";
 
     public interface Columns {
@@ -34,6 +38,7 @@ public class SellerTable {
         String DISCOUNT="discount";
         String QUANTITY="quantity";
         String CATEGORY="category";
+        String VERIFY="verify";
         String IMGURL="imgurl";
         String IMGURL2="imgurl2";
         String IMGURL3="imgurl3";
@@ -50,6 +55,7 @@ public class SellerTable {
                     + Columns.DISCOUNT + TYPE_TEXT + COMMA
                     + Columns.QUANTITY + TYPE_TEXT+ COMMA
                     + Columns.CATEGORY + TYPE_TEXT+ COMMA
+                    + Columns.VERIFY + TYPE_TEXT+ COMMA
                     + Columns.IMGURL + TYPE_TEXT + COMMA
                     + Columns.IMGURL2 + TYPE_TEXT + COMMA
                     + Columns.IMGURL3 + TYPE_TEXT + COMMA
@@ -65,6 +71,7 @@ public class SellerTable {
         newBuyerItem.put(Columns.DISCOUNT, seller.getDiscount());
         newBuyerItem.put(Columns.QUANTITY, seller.getQuantity());
         newBuyerItem.put(Columns.CATEGORY, seller.getCategory());
+        newBuyerItem.put(Columns.VERIFY, seller.getVerify());
         newBuyerItem.put(Columns.IMGURL, seller.getImgurl());
         newBuyerItem.put(Columns.IMGURL2, seller.getImgurl2());
         newBuyerItem.put(Columns.IMGURL3, seller.getImgurl3());
@@ -85,7 +92,7 @@ public class SellerTable {
     public static  String getTableAsString(SQLiteDatabase db, String tableName) {
 
         String tableString = String.format("Table %s:\n", tableName);
-        Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
+        Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName , null);
         if (allRows.moveToFirst() ){
             String[] columnNames = allRows.getColumnNames();
             do {
@@ -112,6 +119,7 @@ public class SellerTable {
                 Columns.DISCOUNT,
                 Columns.QUANTITY,
                 Columns.CATEGORY,
+                Columns.VERIFY,
                 Columns.IMGURL,
                 Columns.IMGURL2,
                 Columns.IMGURL3,
@@ -125,7 +133,7 @@ public class SellerTable {
 
             Seller seller = new Seller(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
                     cursor.getString(3),cursor.getString(4), cursor.getString(5), cursor.getString(6),
-                    cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10),cursor.getString(11));
+                    cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10),cursor.getString(11),cursor.getString(12));
 
             return seller;
         }
@@ -152,12 +160,13 @@ public class SellerTable {
         else return null;
     }
     public static ArrayList<Seller> getAllTodos (SQLiteDatabase dbseller) {
-        Cursor c = dbseller.query(
+        String abc= MainActivity.mobilenumber[0];
+                Cursor c = dbseller.query(
                 TABLE_NAME,
-                new String[]{Columns.ID, Columns.NAME, Columns.DESCRIPTION, Columns.PRICE,Columns.DISCOUNT, Columns.QUANTITY,Columns.CATEGORY,Columns.IMGURL
+                new String[]{Columns.ID, Columns.NAME, Columns.DESCRIPTION, Columns.PRICE,Columns.DISCOUNT,
+                        Columns.QUANTITY,Columns.CATEGORY,Columns.VERIFY,Columns.IMGURL
                         ,Columns.IMGURL2,Columns.IMGURL3,Columns.IMGURL4,Columns.IMGURL5},
-                null,
-                null,
+                        Columns.VERIFY + "=?", new String[]{String.valueOf(abc)},
                 null,
                 null,
                 null
@@ -171,6 +180,7 @@ public class SellerTable {
         int DiscountIndex = c.getColumnIndex(Columns.DISCOUNT);
         int QuantityIndex = c.getColumnIndex(Columns.QUANTITY);
         int CategoryIndex = c.getColumnIndex(Columns.CATEGORY);
+        int VerifyIndex = c.getColumnIndex(Columns.VERIFY);
         int ImgURLIndex = c.getColumnIndex(Columns.IMGURL);
         int ImgURLIndex2 = c.getColumnIndex(Columns.IMGURL2);
         int ImgURLIndex3= c.getColumnIndex(Columns.IMGURL3);
@@ -187,6 +197,7 @@ public class SellerTable {
                     c.getString(DiscountIndex),
                     c.getString(QuantityIndex),
                     c.getString(CategoryIndex),
+                    c.getString(VerifyIndex),
                     c.getString(ImgURLIndex),
                     c.getString(ImgURLIndex2),
                     c.getString(ImgURLIndex3),

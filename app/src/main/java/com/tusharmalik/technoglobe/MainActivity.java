@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.tusharmalik.technoglobe.dbseller.SellerTable;
 
 public class MainActivity extends AppCompatActivity {
     Button btnLogin,btnCreate,btnShowPassword,btnHidePassword;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     String mobNumberLogin;
+    public static String[] mobilenumber = new String[1];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         edMobNum =  findViewById(R.id.edMobNum);
         edPassword = findViewById(R.id.edPassword);
-        final String[] mobilenumber = new String[1];
+
+
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     if(task.isSuccessful()){
                                         mobilenumber[0] =edMobNum.getText().toString();
+                                        Intent i=new Intent(MainActivity.this,New_Product.class);
+                                        i.putExtra("mob", mobilenumber[0]);
+                                        Intent i2=new Intent(MainActivity.this,SellerTable.class);
+                                        i2.putExtra("mob2", mobilenumber[0]);
                                         Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
