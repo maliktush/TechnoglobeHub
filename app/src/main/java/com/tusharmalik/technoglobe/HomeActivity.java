@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         TodoDatabaseHelper myDbHelper = new TodoDatabaseHelper(this);
         final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
-        records = SellerTable.getAllTodos(writeDb);
+        records = SellerTable.getAllTodosverify(writeDb);
         SellerTable.getTableAsString(writeDb,"Sellers");
         sellerAdapter = new SellerAdapter(records,HomeActivity.this);
         ProductList.setLayoutManager(new LinearLayoutManager(HomeActivity.this));

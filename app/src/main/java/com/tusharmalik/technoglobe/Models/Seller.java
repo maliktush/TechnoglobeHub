@@ -10,18 +10,18 @@ import java.io.Serializable;
 
 public class Seller implements Serializable {
     public String name;
-    String description;
+    public String description;
     int id;
     public String price;
     public String discount;
-    String quantity;
-    String category;
+    public String quantity;
+    public String category;
     public String imgurl;
-    String imgurl2;
-    String imgurl3;
-    String imgurl4;
-    String imgurl5;
-    String verify;
+    public String imgurl2;
+    public String imgurl3;
+    public String imgurl4;
+    public String imgurl5;
+    public String verify;
     public Seller(){}
 
     public Seller(int id, String string, String b, String p,String d,String q,String category,String verify, String url, String url2, String url3, String url4, String url5) {

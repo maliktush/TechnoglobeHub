@@ -9,15 +9,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.tusharmalik.technoglobe.Cart;
+import com.tusharmalik.technoglobe.Models.Cartmodel;
 import com.tusharmalik.technoglobe.Models.Seller;
 import com.tusharmalik.technoglobe.Payment;
 import com.tusharmalik.technoglobe.R;
 import com.tusharmalik.technoglobe.zoomactivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -26,16 +29,16 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.RecordViewHolder>{
 
-    private ArrayList<Seller> records;
+    private ArrayList<Cartmodel> records;
     Context context;
 
 
-    public CartAdapter(ArrayList<Seller> records, Context context) {
+    public CartAdapter(ArrayList<Cartmodel> records, Context context) {
         this.records = records;
         this.context = context;
     }
 
-    public void setRecords(ArrayList<Seller> records) {
+    public void setRecords(ArrayList<Cartmodel> records) {
         this.records = records;
         notifyDataSetChanged();
     }
@@ -48,10 +51,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.RecordViewHold
 
     @Override
     public void onBindViewHolder(CartAdapter.RecordViewHolder holder, final int position) {
-        final Seller seller=records.get(position);
+        final Cartmodel cartmodel=records.get(position);
         holder.bindView(records.get(position));
         Picasso.get()
-                .load(seller.getImgurl())
+                .load(cartmodel.getImgurlc())
                 .into(holder.Cartivbuyer);
 //        Picasso.get()
 //                .load(seller.getImgurl2())
@@ -70,7 +73,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.RecordViewHold
             @Override
             public void onClick(View view) {
                 Intent i= (new Intent(context, zoomactivity.class));
-                i.putExtra("image_link",seller.getImgurl());
+                i.putExtra("image_link",cartmodel.getImgurlc());
                 context.startActivity(i);
 //                    Toast.makeText(context, records.get(position).getImgurl(), Toast.LENGTH_SHORT).show();
             }
@@ -119,10 +122,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.RecordViewHold
         return records.size();
     }
 
-    public Seller getItem(int position) {
+    public Cartmodel getItem(int position) {
         return records.get(position);
     }
-    public List<Seller> getList() {
+    public List<Cartmodel> getList() {
         return this.records;
     }
 
@@ -130,28 +133,37 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.RecordViewHold
         TextView CartNamebuyer,CartPricebuyer;
         ImageView Cartivbuyer;
         Button cartpay;
+        ImageView cartdelete;
 
         public RecordViewHolder(View itemView) {
             super(itemView);
             CartNamebuyer = itemView.findViewById(R.id.CartName);
             CartPricebuyer = itemView.findViewById(R.id.CartPrice);
             cartpay=itemView.findViewById(R.id.cartpayy);
+            cartdelete=itemView.findViewById(R.id.cartdelete);
             Cartivbuyer=itemView.findViewById(R.id.buyimg);
 
 
         }
 
-        void bindView(Seller record){
+        void bindView(Cartmodel record){
 
 
 
-            CartNamebuyer.setText(record.getData());
-            CartPricebuyer.setText(record.getPrice());
+            CartNamebuyer.setText(record.getDatac());
+            CartPricebuyer.setText(record.getPricec());
             cartpay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent i=new Intent(context,Payment.class);
                     context.startActivity(i);
+                }
+
+            });
+            cartdelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "Right swipe to delete", Toast.LENGTH_SHORT).show();
                 }
 
             });

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.tusharmalik.technoglobe.MainActivity;
 import com.tusharmalik.technoglobe.Models.Seller;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 import static android.content.Intent.getIntent;
 import static android.content.Intent.getIntentOld;
+import static com.tusharmalik.technoglobe.Register.TAG;
 import static com.tusharmalik.technoglobe.dbseller.Const.CMD_CREATE_TABLE_INE;
 import static com.tusharmalik.technoglobe.dbseller.Const.COMMA;
 import static com.tusharmalik.technoglobe.dbseller.Const.LBR;
@@ -159,14 +161,65 @@ public class SellerTable {
         }
         else return null;
     }
-    public static ArrayList<Seller> getAllTodos (SQLiteDatabase dbseller) {
+    public static ArrayList<Seller> getAllTodosverify (SQLiteDatabase dbseller) {
         String abc= MainActivity.mobilenumber[0];
-                Cursor c = dbseller.query(
+        Cursor c = dbseller.query(
                 TABLE_NAME,
                 new String[]{Columns.ID, Columns.NAME, Columns.DESCRIPTION, Columns.PRICE,Columns.DISCOUNT,
                         Columns.QUANTITY,Columns.CATEGORY,Columns.VERIFY,Columns.IMGURL
                         ,Columns.IMGURL2,Columns.IMGURL3,Columns.IMGURL4,Columns.IMGURL5},
                         Columns.VERIFY + "=?", new String[]{String.valueOf(abc)},
+                null,
+                null,
+                null
+        );
+        ArrayList<Seller> todos = new ArrayList<>();
+        c.moveToFirst();
+        int nameIndex = c.getColumnIndex(Columns.NAME);
+        int idIndex = c.getColumnIndex(Columns.ID);
+        int descriptionIndex = c.getColumnIndex(Columns.DESCRIPTION);
+        int priceIndex = c.getColumnIndex(Columns.PRICE);
+        int DiscountIndex = c.getColumnIndex(Columns.DISCOUNT);
+        int QuantityIndex = c.getColumnIndex(Columns.QUANTITY);
+        int CategoryIndex = c.getColumnIndex(Columns.CATEGORY);
+        int VerifyIndex = c.getColumnIndex(Columns.VERIFY);
+        int ImgURLIndex = c.getColumnIndex(Columns.IMGURL);
+        int ImgURLIndex2 = c.getColumnIndex(Columns.IMGURL2);
+        int ImgURLIndex3= c.getColumnIndex(Columns.IMGURL3);
+        int ImgURLIndex4 = c.getColumnIndex(Columns.IMGURL4);
+        int ImgURLIndex5 = c.getColumnIndex(Columns.IMGURL5);
+
+
+        while (!c.isAfterLast()) {
+            todos.add(new Seller(
+                    c.getInt(idIndex),
+                    c.getString(nameIndex),
+                    c.getString(descriptionIndex),
+                    c.getString(priceIndex),
+                    c.getString(DiscountIndex),
+                    c.getString(QuantityIndex),
+                    c.getString(CategoryIndex),
+                    c.getString(VerifyIndex),
+                    c.getString(ImgURLIndex),
+                    c.getString(ImgURLIndex2),
+                    c.getString(ImgURLIndex3),
+                    c.getString(ImgURLIndex4),
+                    c.getString(ImgURLIndex5)
+
+            ));
+
+            c.moveToNext();
+        }
+        return todos;
+    }
+    public static ArrayList<Seller> getAllTodos(SQLiteDatabase dbseller) {
+        String abc= MainActivity.mobilenumber[0];
+        Cursor c = dbseller.query(
+                TABLE_NAME,
+                new String[]{Columns.ID, Columns.NAME, Columns.DESCRIPTION, Columns.PRICE,Columns.DISCOUNT,
+                        Columns.QUANTITY,Columns.CATEGORY,Columns.VERIFY,Columns.IMGURL
+                        ,Columns.IMGURL2,Columns.IMGURL3,Columns.IMGURL4,Columns.IMGURL5},
+                null, null,
                 null,
                 null,
                 null

@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     if(task.isSuccessful()){
                                         mobilenumber[0] =edMobNum.getText().toString();
+
                                         Intent i=new Intent(MainActivity.this,New_Product.class);
                                         i.putExtra("mob", mobilenumber[0]);
-                                        Intent i2=new Intent(MainActivity.this,SellerTable.class);
-                                        i2.putExtra("mob2", mobilenumber[0]);
+
                                         Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

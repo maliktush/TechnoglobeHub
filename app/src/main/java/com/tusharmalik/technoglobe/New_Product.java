@@ -64,7 +64,7 @@ public class New_Product extends AppCompatActivity {
 
         TodoDatabaseHelper myDbHelper= new TodoDatabaseHelper(this);
         final SQLiteDatabase writeDb = myDbHelper.getWritableDatabase();
-        final String mob=getIntent().getStringExtra("mob");
+        final String mob= MainActivity.mobilenumber[0];
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {

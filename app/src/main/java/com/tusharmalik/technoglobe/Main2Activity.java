@@ -21,6 +21,7 @@ public class Main2Activity extends AppCompatActivity {
     private FirebaseAuth mAuth2;
     ProgressDialog progressDialog1;
     String mobNumberLogin;
+    public static String[] mobilenumber = new String[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class Main2Activity extends AppCompatActivity {
                                     progressDialog1.dismiss();
                                     if(task.isSuccessful()){
                                         Toast.makeText(Main2Activity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                                        mobilenumber[0] =edMobNum2.getText().toString();
                                         Intent intent = new Intent(Main2Activity.this,Area.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);

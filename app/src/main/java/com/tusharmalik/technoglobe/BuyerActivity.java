@@ -35,7 +35,10 @@ import android.widget.Toast;
 import com.tusharmalik.technoglobe.Adapters.BuyerAdapter;
 import com.tusharmalik.technoglobe.Adapters.CartAdapter;
 import com.tusharmalik.technoglobe.Adapters.SellerAdapter;
+import com.tusharmalik.technoglobe.Models.Cartmodel;
 import com.tusharmalik.technoglobe.Models.Seller;
+import com.tusharmalik.technoglobe.dbseller.CartDatabaseHelper;
+import com.tusharmalik.technoglobe.dbseller.CartTable;
 import com.tusharmalik.technoglobe.dbseller.SellerTable;
 import com.tusharmalik.technoglobe.dbseller.TodoDatabaseHelper;
 
@@ -59,7 +62,7 @@ public class BuyerActivity extends AppCompatActivity
     ArrayList<Seller> records6 = new ArrayList<Seller>();
     ArrayList<Seller> records7 = new ArrayList<Seller>();
     ArrayList<Seller> records8 = new ArrayList<Seller>();
-    ArrayList<Seller> recordscart = new ArrayList<Seller>();
+    ArrayList<Cartmodel> recordscart = new ArrayList<Cartmodel>();
 
 
 
@@ -260,12 +263,13 @@ public class BuyerActivity extends AppCompatActivity
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         Toast.makeText(BuyerActivity.this, "Added to your Cart", Toast.LENGTH_SHORT).show();
                                         TodoDatabaseHelper myDbHelpercart = new TodoDatabaseHelper(BuyerActivity.this);
-
+                                        CartDatabaseHelper myDbHelpercart2 = new CartDatabaseHelper(BuyerActivity.this);
+                                        final SQLiteDatabase writeDbcart2 = myDbHelpercart2.getWritableDatabase();
+                                        SQLiteDatabase readDbcart2 = myDbHelpercart2.getReadableDatabase();
 
                                         final SQLiteDatabase writeDbcart = myDbHelpercart.getWritableDatabase();
                                         SQLiteDatabase readDbcart = myDbHelpercart.getReadableDatabase();
-
-//
+                                        final String mob= Main2Activity.mobilenumber[0];
                                         Cursor datacart=TodoDatabaseHelper.getInfo(writeDbcart);
 
 
@@ -276,25 +280,37 @@ public class BuyerActivity extends AppCompatActivity
                                             Seller workcart=new Seller();
 
                                             workcart.name=datacart.getString(1);
-                                            workcart.price= datacart.getString(3);
-                                            workcart.imgurl=datacart.getString(7);
-                                            recordscart.add(workcart);
+                                            workcart.description=datacart.getString(2);
+                                            workcart.price=datacart.getString(3);
+                                            workcart.discount= datacart.getString(4);
+                                            workcart.quantity= datacart.getString(5);
+                                            workcart.category= datacart.getString(6);
+                                            workcart.verify= datacart.getString(7);
+                                            workcart.imgurl=datacart.getString(8);
+                                            workcart.imgurl2=datacart.getString(9);
+                                            workcart.imgurl3=datacart.getString(10);
+                                            workcart.imgurl4=datacart.getString(11);
+                                            workcart.imgurl5=datacart.getString(12);
                                             count++;
+                                            CartTable.insertCartItem(new Cartmodel(0,
+                                                            workcart.name,
+                                                            workcart.description,
+                                                            workcart.price,
+                                                            workcart.discount,
+                                                            workcart.quantity,
+                                                            workcart.category,
+                                                            mob,
+                                                            workcart.imgurl,
+                                                            workcart.imgurl2,
+                                                            workcart.imgurl3,
+                                                            workcart.imgurl4,
+                                                            workcart.imgurl5),
+                                                    writeDbcart2);
                                         }
-
-
-
-
-
-
-
-//        if (records.isEmpty()){
 //
-//            createTextView.setVisibility(View.VISIBLE);
-//
-//        }else {
-                                        Intent i=new Intent(BuyerActivity.this,Cart.class);
-                                        i.putExtra("record" , recordscart);
+
+
+                                        Intent i = new Intent(BuyerActivity.this, Cart.class);
                                         startActivity(i);
 
 
